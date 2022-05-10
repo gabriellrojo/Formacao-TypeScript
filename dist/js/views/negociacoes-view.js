@@ -1,6 +1,7 @@
-export class NegociacoesView {
+import { View } from "./view.js";
+export class NegociacoesView extends View {
     constructor(seletor) {
-        this.elemento = document.querySelector(seletor);
+        super(seletor);
     }
     template(model) {
         return `
@@ -25,9 +26,6 @@ export class NegociacoesView {
             </tbody>
         </table>
         `;
-    }
-    update(model) {
-        this.elemento.innerHTML = this.template(model);
     }
 }
 //Intl.DateTimeFormat().format(data) => vai te dar o valor da data de acordo com a sua localização.

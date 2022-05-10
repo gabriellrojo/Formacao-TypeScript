@@ -1,10 +1,12 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
+import { MensagemView } from "../views/mensagem-view.js";
 export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes(); //como estamos instanciando aqui, não precisamos declarar o tipo. TS já entende.
         this.negociacoesView = new NegociacoesView("#negociacoesView");
+        this.mensagemView = new MensagemView("#mensagemView");
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor");
@@ -15,6 +17,7 @@ export class NegociacaoController {
         let negociacao = this.criaNegociacao();
         this.negociacoes.adiciona(negociacao);
         this.negociacoesView.update(this.negociacoes);
+        this.mensagemView.update("Negociação Incluída com Sucesso");
         this.limpaFormulario();
     }
     criaNegociacao() {

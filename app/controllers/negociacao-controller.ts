@@ -10,25 +10,34 @@ export class NegociacaoController {
     private negociacoes = new Negociacoes() //como estamos instanciando aqui, não precisamos declarar o tipo. TS já entende.
     private negociacoesView = new NegociacoesView("#negociacoesView")
     private mensagemView = new MensagemView("#mensagemView")
+    private SABADO = 6;
+    private DOMINGO = 0 //Há uma convenção que recomenda declararmos constantes em caixa alta
 
     constructor(){
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor")
-        this.negociacoesView.template(this.negociacoes)//vai apresentar nossa tabela vazia nesse momento da leitura do códico pois invocamos o método template, mas não realizamos nenhuma adição
         this.negociacoesView.update(this.negociacoes)
     }
 
-    adiciona(): void{
+    public adiciona(): void{ //Nao precisaria colocar, o TS subentende como public quando não especificado.
         let negociacao = this.criaNegociacao()
+        if(!this.diaEhUtil(negociacao.data)){
+            this.mensagemView.update("Negociações válidas apenas em dias úteis")
+
+        }
         this.negociacoes.adiciona(negociacao)
-        this.negociacoesView.update(this.negociacoes)
-        this.mensagemView.update("Negociação Incluída com Sucesso")
+        this.atualizaView()
         this.limpaFormulario()
         
+        //getDay(): dias da semana 0 até 6, sendo 0 o domingo. O getDate retorna o dia do mês conforme visto em outra atividade
     }
 
-    criaNegociacao(): Negociacao{
+    private diaEhUtil(data: Date){
+        return data.getDay() > 0 && data.getDay() < 6
+    }
+    
+    private criaNegociacao(): Negociacao{
 
         //Vamos alterar aqui, pois estamos obtendo um objeto apenas com strings
         let exp = /-/g
@@ -39,10 +48,15 @@ export class NegociacaoController {
         return new Negociacao (date, quantidade , valor)
     }
 
-    limpaFormulario(): void{
+    private limpaFormulario(): void{
         this.inputData.value = ""
         this.inputQuantidade.value = ""
         this.inputValor.value = ""
         this.inputData.focus()
+    }
+
+    private atualizaView(): void{
+        this.negociacoesView.update(this.negociacoes)
+        this.mensagemView.update("Negociação Incluída com Sucesso")
     }
 }

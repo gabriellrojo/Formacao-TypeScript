@@ -17,7 +17,7 @@ export class NegociacoesView extends View {
                 ${model.lista().map(negociacao => {
             return `
                         <tr>
-                            <td>${Intl.DateTimeFormat().format(negociacao.data)}</td>
+                            <td>${this.formatar(negociacao.data)}</td>
                             <td>${negociacao.quantidade}</td>
                             <td>${negociacao.valor}</td>
                         </tr>
@@ -26,6 +26,9 @@ export class NegociacoesView extends View {
             </tbody>
         </table>
         `;
+    } // colocamos protected para esse método não ser chamado. Ele é interno do update.
+    formatar(data) {
+        return Intl.DateTimeFormat().format(data);
     }
 }
 //Intl.DateTimeFormat().format(data) => vai te dar o valor da data de acordo com a sua localização.

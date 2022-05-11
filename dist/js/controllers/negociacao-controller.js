@@ -7,18 +7,25 @@ export class NegociacaoController {
         this.negociacoes = new Negociacoes(); //como estamos instanciando aqui, não precisamos declarar o tipo. TS já entende.
         this.negociacoesView = new NegociacoesView("#negociacoesView");
         this.mensagemView = new MensagemView("#mensagemView");
+        this.SABADO = 6;
+        this.DOMINGO = 0; //Há uma convenção que recomenda declararmos constantes em caixa alta
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor");
-        this.negociacoesView.template(this.negociacoes); //vai apresentar nossa tabela vazia nesse momento da leitura do códico pois invocamos o método template, mas não realizamos nenhuma adição
         this.negociacoesView.update(this.negociacoes);
     }
     adiciona() {
         let negociacao = this.criaNegociacao();
+        if (!this.diaEhUtil(negociacao.data)) {
+            this.mensagemView.update("Negociações válidas apenas em dias úteis");
+        }
         this.negociacoes.adiciona(negociacao);
-        this.negociacoesView.update(this.negociacoes);
-        this.mensagemView.update("Negociação Incluída com Sucesso");
+        this.atualizaView();
         this.limpaFormulario();
+        //getDay(): dias da semana 0 até 6, sendo 0 o domingo. O getDate retorna o dia do mês conforme visto em outra atividade
+    }
+    diaEhUtil(data) {
+        return data.getDay() > 0 && data.getDay() < 6;
     }
     criaNegociacao() {
         //Vamos alterar aqui, pois estamos obtendo um objeto apenas com strings
@@ -33,5 +40,9 @@ export class NegociacaoController {
         this.inputQuantidade.value = "";
         this.inputValor.value = "";
         this.inputData.focus();
+    }
+    atualizaView() {
+        this.negociacoesView.update(this.negociacoes);
+        this.mensagemView.update("Negociação Incluída com Sucesso");
     }
 }

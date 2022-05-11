@@ -7,9 +7,9 @@ export abstract class View<T> {
 
     }
 
-    abstract template(model: T): string;
+    protected abstract template(model: T): string; //protected. Apenas as classes pais e filhos podem ter acesso ao método
     
-    update(model: T): void{
+    public update(model: T): void{
         this.elemento.innerHTML = this.template(model)
     }
 }

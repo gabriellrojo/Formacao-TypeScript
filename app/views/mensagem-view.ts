@@ -6,7 +6,7 @@ export class MensagemView extends View<string> {
         super(seletor)
     }
 
-    template(model: string): string{
+    protected template(model: string): string{
         return `<p class="alert alert-info">${model}</p> `
-    }
+    }// colocamos protected para esse método não ser chamado. Ele é interno do update.
 }

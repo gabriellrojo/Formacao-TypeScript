@@ -3,7 +3,7 @@ import { View } from "./view.js"
 export class MensagemView extends View<string> {
 
     constructor(seletor: string){
-        super(seletor)
+        super(seletor, false)
     }
 
     protected template(model: string): string{

@@ -1,6 +1,6 @@
 export class Negociacoes {
     constructor() {
-        this.negociacoes = []; //Array<Negociacao> pode ser declarado também da seguinte forma: Negociacao[]
+        this.negociacoes = [];
     }
     adiciona(negociacao) {
         this.negociacoes.push(negociacao);

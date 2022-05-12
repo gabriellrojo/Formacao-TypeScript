@@ -3,7 +3,8 @@
         "outDir": "dist/js", //para onde serão gerados os arquivos complidos
         "target": "ES6", //no que serão transformados para serem interpretados
         "noEmitOnError": true, //Nao vai gerar o arquivo JS enquanto o TS não estiver passando na conf.
-        "noImplicitAny": true //Nao vai aceitar o tipo any implicitamente - TS fortemente TIPADO, você deve dizer qual o tipo da variável.
+        "noImplicitAny": true, //Nao vai aceitar o tipo any implicitamente - TS fortemente TIPADO, você deve dizer qual o tipo da variável.
+        "removeComments": true //Os comentários feitos nos arquivos TS não serão compilados para os arquivos JS. 
     },
     "include": ["app/**/*"] //onde serão lidos os arquivos TS.
 }

@@ -2,8 +2,8 @@ import { Negociacoes } from "../models/negociacoes.js"
 import { View } from "./view.js"
 
 export class NegociacoesView extends View <Negociacoes> {
-    constructor(seletor: string){
-        super(seletor)
+    constructor(seletor: string, escapar?: boolean){
+        super(seletor, escapar)
     }
 
     protected template(model: Negociacoes): string {

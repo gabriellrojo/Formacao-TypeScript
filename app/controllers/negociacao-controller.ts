@@ -13,7 +13,7 @@ export class NegociacaoController {
     private mensagemView = new MensagemView("#mensagemView")
 
     constructor(){
-        this.inputData = document.querySelector("#data");
+        this.inputData = document.querySelector("#data")
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor")
         this.negociacoesView.update(this.negociacoes)
@@ -37,7 +37,7 @@ export class NegociacaoController {
     }
 
     private limpaFormulario(): void{
-        this.inputData.value = ""
+        this.inputData.value = "" 
         this.inputQuantidade.value = ""
         this.inputValor.value = ""
         this.inputData.focus()

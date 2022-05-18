@@ -6,5 +6,7 @@
         "noImplicitAny": true, //Nao vai aceitar o tipo any implicitamente - TS fortemente TIPADO, você deve dizer qual o tipo da variável.
         "removeComments": true, //Os comentários feitos nos arquivos TS não serão compilados para os arquivos JS.
     },
-    "include": ["app/**/*"] //onde serão lidos os arquivos TS.
+    "include": ["app/**/*"] //onde serão lidos os arquivos TS. app/toda subpasta/qualquer arquivo dentro dessas subspastas. Caso queria adicionar
+    //mais pastas além de app, por ex, app2: ["app"/**/*, app2/**/*]
+  
 }
